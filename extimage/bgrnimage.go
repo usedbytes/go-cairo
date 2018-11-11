@@ -48,7 +48,7 @@ func (self *BGRN) At(x, y int) color.Color {
 // PixOffset returns the index of the first element of Pix that corresponds to
 // the pixel at (x, y).
 func (self *BGRN) PixOffset(x, y int) int {
-	return (y-self.Rect.Min.Y)*self.Stride + (x-self.Rect.Min.X)*3
+	return (y-self.Rect.Min.Y)*self.Stride + (x-self.Rect.Min.X)*4
 }
 
 func (self *BGRN) Set(x, y int, c color.Color) {
