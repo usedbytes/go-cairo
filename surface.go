@@ -202,8 +202,12 @@ func (self *Surface) SetLineJoin(line_join LineJoin) {
 }
 
 func (self *Surface) SetDash(dashes []float64, num_dashes int, offset float64) {
-	dashesp := (*C.double)(&dashes[0])
-	C.cairo_set_dash(self.context, dashesp, C.int(num_dashes), C.double(offset))
+	if num_dashes == 0 {
+		C.cairo_set_dash(self.context, (*C.double)(nil), C.int(num_dashes), C.double(0))
+	} else {
+		dashesp := (*C.double)(&dashes[0])
+		C.cairo_set_dash(self.context, dashesp, C.int(num_dashes), C.double(offset))
+	}
 }
 
 func (self *Surface) SetMiterLimit(limit float64) {
