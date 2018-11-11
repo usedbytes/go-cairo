@@ -177,6 +177,10 @@ func (self *Surface) SetSourceSurface(surface *Surface, x, y float64) {
 	C.cairo_set_source_surface(self.context, surface.surface, C.double(x), C.double(y))
 }
 
+func (self *Surface) GetSource() *Pattern {
+	return &Pattern{C.cairo_get_source(self.context)}
+}
+
 func (self *Surface) SetTolerance(tolerance float64) {
 	C.cairo_set_tolerance(self.context, C.double(tolerance))
 }
